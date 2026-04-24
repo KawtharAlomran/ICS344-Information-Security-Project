@@ -26,8 +26,6 @@ To prove that you achieve the vulnerability open AWS consol and do these steps:
 3.	Search for /aws/lambda/DVSA-ORDER-MANAGER and open the recent log.
 You have to see smonething simmilar to the image below
 
- ![Event Injection proo.](/Event Injection proof.png)
-
 
 ---
 ## Vulnerability Fixing
