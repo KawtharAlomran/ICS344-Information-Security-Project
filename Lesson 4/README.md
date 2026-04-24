@@ -22,7 +22,9 @@ To prove that you achieve the vulnerability open AWS consol and do these steps:
 2.	Search for and open the bucket name (it is /aws/lambda/DVSA-FEEDBACK-UPLOADS in my example).
 Open the recent log, and you will see a message similar the one in the image below
 
+---
 Also, you can see the file from S3 by following these steps:
+
 1.	Search and open S3
 2.	Open the bucket that you uploaded the file to. 
 You will see the file mane in the files list in Objects tap
