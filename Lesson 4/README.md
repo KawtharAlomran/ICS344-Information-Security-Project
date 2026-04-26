@@ -1,4 +1,4 @@
-# Insecure Cloud Configuration
+# Insecure Cloud Configuration Vulnerability
 The Insecure Cloud Configuration vulnerability in the DVSA application occurs because the S3 bucket permissions are set to "public," allowing anyone to upload files or folders. This setup is dangerous because it gives attackers direct access to sensitive user data and website items. Beyond just stealing information, an attacker can upload malicious files that run on the server side, enabling them to manipulate the application's internal logic and change its behavior.
 
 
@@ -40,4 +40,4 @@ The fix was applied in the S3 buckets by changing the permissions to block publi
 5.	Select Block all public access and save changes
 
 
-To verify that the fix above is working, we have to run the command again and see the results in the CloudWatch logs. You should not see any new upload message. 
+To verify that the fix above is working, we have to run the command again and see the results in the termianl the CloudWatch logs. You should get Access Denied error message in the terminal and not seeing any new upload message. 
