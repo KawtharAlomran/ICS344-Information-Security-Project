@@ -24,20 +24,29 @@ To prove that you achieve the vulnerability open AWS consol and do these steps:
 1.	Search and open CloudWatch.
 2.	Go to Log Management under the Logs in the left bar.
 3.	Search for /aws/lambda/DVSA-ORDER-MANAGER and open the recent log.
-You have to see smonething simmilar to the image below
+You have to see something simmilar to the image below
 
 
 ---
 ## Vulnerability Fixing
 
 The fix of this vulnerability is done in the Order_Manage Lambda function by doing the following:
+
 1.	Search for and open Lambda in the AWS console
 2.	Open the DVSA-ORDER-MANAGER function from the functions list.
 3.	Open order-manager.JS file in the code tab.
-4.	Delete this line (const serialize = require('node-serialize');), which is the call of the node-serialize library.
-5.	Change this line (var req = serialize.unserialize(event.body); ) to this (var req = JSON.parse(event.body);).
-6.	Change this line (var headers = serialize.unserialize(event.headers);) to this ( var headers = event.headers;).
-7.	Deploy the changes by clicking on the Undeployed changes button at the bottom left corner of the Code source section and then clicking the deploy button. 
+4.	Add this block of code at the biggining:
+```
+if (event.body && event.body.includes("_$$ND_FUNC$$_")) {
+        console.error("Bad Request.");
+        return callback(null, {
+            statusCode: 400,
+            body: JSON.stringify({ message: "Bad Request" })
+        });
+    }
+```
+5.	Deploy the changes by clicking on the Deployed button at the left side of the Code source section. 
+
 The final code should be as the image below
 
-To verify that the fix above is working, we have to run the command again and see the results in the terminal and the CloudWatch logs. You will get the same message in the terminal, but in the CloudWatch logs you should not see FILE READ SUCCESS: You are reading the contents of my hacked file.
+To verify that the fix above is working, we have to run the command again and see the results in the terminal and the CloudWatch logs. You will get the bad request message in the terminal, but in the CloudWatch logs you will see Error Bad request.
