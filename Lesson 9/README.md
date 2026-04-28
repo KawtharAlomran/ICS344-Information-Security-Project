@@ -1,6 +1,5 @@
-# Event Injection Vulnerability 
-The Event Injection vulnerability in the DVSA application happens because the AWS Lambda backend uses a risky library called node-serialize. This tool mistakenly treats certain text inputs as live code instead of plain data, leading to insecure deserialization. By sending a specially crafted string through the API Gateway, an attacker can trick the system into running their own commands. This results in Remote Code Execution, giving them the power to steal data or change how the application functions without permission.
-
+# Vulnerable Dependencies Vulnerability 
+The Vulnerable Dependencies flaw in the order-manager.js Lambda function stems from the unsafe deserialization of user-provided data via the node-serialize library. By failing to validate external inputs before processing them, the application allows attackers to inject specially crafted strings that the library executes as live code, leading to Remote Code Execution (RCE). This highlights a fundamental weakness in dependency management, where integrating unvetted or outdated third-party code introduces severe security risks that a developer may not have written but must ultimately secure.
 
 ---
 ## Vulnerability Exploting
