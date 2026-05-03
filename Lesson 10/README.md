@@ -15,10 +15,12 @@ You have to follow these steps:
 5. Search for API Gateway and open it.
 6. Open the DVSA API and copy the Invoke URL.
 7. Open the Terminal and write this command:
+```bash
 curl -i -X POST "API_URL/order" \
 -H "Content-Type: application/json" \
 -H "authorization: TOKEN" \
 --data-raw '{"action":"get"}'
+```
 
 Replace `API_URL` with the actual API endpoint and `TOKEN` with the captured authorization token. The request intentionally does not include the required `orderId` field.
 
@@ -60,10 +62,12 @@ if not orderId:
 This fix ensures that missing or invalid input is handled safely without exposing internal error details to the client.
 
 To verify that the fix is working, run the same curl command again:
+```bash
 curl -i -X POST "API_URL/order" \
 -H "Content-Type: application/json" \
 -H "authorization: TOKEN" \
 --data-raw '{"action":"get"}'
+```
 
 After applying the fix, the application will return a safe response:
 {"msg":"Invalid request"}
