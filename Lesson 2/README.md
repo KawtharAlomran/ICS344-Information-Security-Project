@@ -20,7 +20,9 @@ You have to follow these steps:
 ```bash
 
 export TOKEN_B="paste the token here" 
+```
 and 
+```bash
 export API="paste the url here"
 ``` 
 
@@ -208,9 +210,9 @@ replace this code:
     var user = token.username;
     var isAdmin = false;
 ```
-    by: 
+by: 
 
-    ```js
+```js
     var auth_header = (headers.Authorization || headers.authorization || "");
     var jwt = auth_header.replace(/^Bearer\s+/i, "").trim();
 
@@ -227,7 +229,7 @@ replace this code:
 
     var isAdmin = false;
 
-    ```
+```
 
 3.	Close the promise chain at the end of the handler by adding proper error handling to reject invalid or tampered tokens.
     ```js
