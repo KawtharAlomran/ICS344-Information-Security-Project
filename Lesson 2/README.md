@@ -232,13 +232,13 @@ by:
 ```
 
 3.	Close the promise chain at the end of the handler by adding proper error handling to reject invalid or tampered tokens.
-    ```js
+```js
 
     }).catch((e) => {
     console.log("JWT verify failed:", e);
     return callback(null, resp(401, { status: "err", msg: "invalid token" }));
   });
-      ```
+```
 
  4. Save and deploy the changes. 
  5. Run the same request again to the Orders API using the previously forged JWT token with the following command:
