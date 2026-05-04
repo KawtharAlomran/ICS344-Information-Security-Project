@@ -31,6 +31,7 @@ The main objectives of this project are:
 ## Project Structure
 The repository is organized as follows:
 
+```
 ICS344-Information-Security-Project
 ├── Lesson 1/
 ├── Lesson 2/
@@ -43,6 +44,7 @@ ICS344-Information-Security-Project
 ├── Lesson 9/
 ├── Lesson 10/
 └── README.md
+```
 
 Each lesson folder includes:
 - Vulnerability description
