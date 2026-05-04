@@ -11,7 +11,7 @@ To achieve this vulnerability, you have to following these steps:
 4.	Write this command and replace what is in the square brackets with your bucket name.
 
 ```
-curl.exe -X PUT -d "malicious" 'https://[dvsa-feedback-bucket-726695008551-us-east-1].s3.us-east-1.amazonaws.com/test.txt'
+curl.exe -X PUT -d "malicious" 'https://[Your target bucket name].s3.us-east-1.amazonaws.com/test.txt'
 ```
 
 > After running this command nothing will appear in the terminal
@@ -20,7 +20,7 @@ To prove that you achieve the vulnerability open AWS consol and do these steps:
 
 1.	Open CloudWatch and go to log management inside the log tab
 2.	Search for and open the bucket name (it is /aws/lambda/DVSA-FEEDBACK-UPLOADS in my example).
-Open the recent log, and you will see a message similar the one in the image below
+Open the recent log, and you will see a message similar to (uploading a file) image
 
 ---
 Also, you can see the file from S3 by following these steps:

