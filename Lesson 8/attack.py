@@ -4,7 +4,7 @@ import time
 
 ORDER_ID = ""
 TOKEN = ""
-URL = "https://9v3sovt0ed.execute-api.us-east-1.amazonaws.com/dvsa/order"
+URL = ""
 headers = {"Authorization": TOKEN, "Content-Type": "application/json"}
 
 def billing():
