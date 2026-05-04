@@ -33,7 +33,7 @@ def lambda_handler(event, context):
 
     status = int(json.dumps(response["Item"]['orderStatus'], cls=DecimalEncoder))
     if status < 120:
-        table.update_item(
+        table.update_item(  
             Key={"orderId": orderId, "userId": userId},
             UpdateExpression='SET orderStatus = :s',
             ExpressionAttributeValues={':s': Decimal(115)}
